@@ -1,1 +1,1 @@
-module.export = require('./blight');
+module.exports = require('./blight');
