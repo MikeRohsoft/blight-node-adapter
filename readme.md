@@ -49,7 +49,10 @@ function CoinBot() {
         let beNiceIn = 0;
         const seq = new Sequencer(client, sequence, params);
         const nextHandler = e => {
-            console.log(`client.${sequence[i]}(${params[i++]}) => `, e);
+            if (!!e.report) {
+                e.report = client.fixBlightObjects(e.report);
+            }
+            console.log(`client.${sequence[i]}(${params[i++]}) => `, JSON.stringify(e, null, 2));
             let timeout = 1000;
             if (++beNiceIn === 3) {
                 beNiceIn = 0;
